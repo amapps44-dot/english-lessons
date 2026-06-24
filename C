@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>درس: الطعام والمطاعم</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Cairo", sans-serif;
+      background: #111;
+      color: #fff;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+      background: #0f2b1f;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+    }
+
+    .header span.flag {
+      margin-right: 8px;
+      font-size: 1.4rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-top: 8px;
+      color: #f5f5f5;
+      font-size: 1rem;
+    }
+
+    .section {
+      margin-top: 35px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 18px;
+      padding: 20px 18px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 10% 0%, rgba(255,255,255,0.08) 0, transparent 55%),
+        radial-gradient(circle at 90% 100%, rgba(255,255,255,0.06) 0, transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.6rem;
+    }
+
+    .section-title .emoji {
+      font-size: 1.6rem;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.3fr);
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .dish-visual {
+      background: #143524;
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+      position: relative;
+    }
+
+    .dish-visual h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .dish-circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 0 0 6px rgba(255,255,255,0.08);
+    }
+
+    /* صور افتراضية (تقدرين تبدلينها بصور حقيقية لاحقاً) */
+    .pizza-circle {
+      background-image: url("https://images.pexels.com/photos/4109084/pexels-photo-4109084.jpeg");
+    }
+    .sushi-circle {
+      background-image: url("https://images.pexels.com/photos/3577565/pexels-photo-3577565.jpeg");
+    }
+    .steak-circle {
+      background-image: url("https://images.pexels.com/photos/4106483/pexels-photo-4106483.jpeg");
+    }
+
+    .price-tag {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.9rem;
+    }
+
+    .ingredients,
+    .types {
+      background: #143524;
+      border-radius: 16px;
+      padding: 14px 14px 16px;
+    }
+
+    .ingredients h4,
+    .types h4 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .ingredients-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-top: 6px;
+    }
+
+    .ingredient-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ingredient-pill span.icon {
+      font-size: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 8px 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+    }
+
+    th {
+      background: rgba(255,255,255,0.06);
+      font-weight: 600;
+    }
+
+    .footer-note {
+      margin-top: 35px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #f0f0f0;
+    }
+
+    @media (max-width: 800px) {
+      .section-grid {
+        grid-template-columns: 1fr;
+      }
+      .dish-circle {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <h1>درس: الطعام والمطاعم <span class="flag">🇮🇹</span></h1>
+      <div class="subtitle">منيو تفاعلي يجمع بين البيتزا، السوشي، والستيك بأسلوب دروسي ممتع</div>
+    </header>
+
+    <!-- 🍕 البيتزا -->
+    <section class="section">
+      <div class="section-content">
+        <div class="section-title">
+          <span class="emoji">🍕</span>
+          <h2>قسم البيتزا</h2>
+        </div>
+
+        <div class="section-grid">
+          <div class="dish-visual">
+            <h3>بيتزا الخضار الكلاسيكية</h3>
+            <div class="dish-circle pizza-circle"></div>
+            <div class="price-tag">السعر التقريبي: ٣٩ ر.س</div>
+          </div>
+
+          <div>
+            <div class="ingredients">
+              <h4>المكونات الأساسية</h4>
+              <div class="ingredients-list">
+                <div class="ingredient-pill">
+                  <span class="icon">🧀</span><span>جبن</span>
+                </div>
+                <div class="ingredient-pill">
+                  <span class="icon">🌾</span><span>دقيق</span>
+                </div>
+                <div class="ingredient-pill">
+                  <span class="icon">🫒</span><span>زيتون</span>
+                </div>
+                <div class="ingredient-pill">
+                  <span class="icon">🌶️</span><span>فلفل رومي</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="types" style="margin-top: 12px;">
+              <h4>أنواع البيتزا</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th>النوع</th>
+                    <th>المكونات المميزة</th>
+                    <th>السعر (ر.س)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>مارغريتا</td>
+                    <td>جبن، طماطم، ريحان</td>
+                    <td>٣٤</td>
+                  </tr>
+                  <tr>
+                    <td>بيبروني</td>
+                    <td>جبن، صوص طماطم، بيبروني</td>
+                    <td>٣٩</td>
+                  </tr>
+                  <tr>
+                    <td>خضار</td>
+                    <td>زيتون، فلفل، مشروم</td>
+                    <td>٣٧</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🍣 السوشي -->
+    <section class="section">
+      <div class="section-content">
+        <div class="section-title">
+          <span class="emoji">🍣</span>
+          <h2>قسم السوشي</h2>
+        </div>
+
+        <div class="section-grid">
+          <div class="dish-visual">
+            <h3>سوشي سالمون وكراب</h3>
+            <div class="dish-circle sushi-circle"></div>
+            <div class="price-tag">السعر التقريبي: ٤٥ ر.س</div>
+          </div>
+
+          <div>
+            <div class="ingredients">
+              <h4>المكونات الأساسية</h4>
+              <div class="ingredients-list">
+                <div class="ingredient-pill">
+                  <span class="icon">🥕</span><span>جزر</span>
+                </div>
+                <div class="ingredient-pill">
+                  <span class="icon">🍤</span><span>ربيان</span>
+                </div>
+                <div class="ingredient-pill">
+                  <span class="icon">🦀</span><span>كراب</span>
+                </div>
+                <div class="ingredient-pill">
+                  <span class="icon">🐟</span><span>سالمون</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="types" style="margin-top: 12px;">
+              <h4>أنواع السوشي</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th>النوع</th>
+                    <th>المكونات المميزة</th>
+                    <th>السعر (ر.س)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>سالمون رول</td>
+                    <td>سالمون، أرز، أفوكادو</td>
+                    <td>٤٥</td>
+                  </tr>
+                  <tr>
+                    <td>كراب رول</td>
+                    <td>كراب، خيار، مايونيز</td>
+                    <td>٤٢</td>
+                  </tr>
+                  <tr>
+                    <td>ربيان نيجيري</td>
+                    <td>ربيان، أرز، صوص صويا</td>
+                    <td>٤٠</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🥩 الستيك -->
+    <section class="section">
+      <div class="section-content">
+        <div class="section-title">
+          <span class="emoji">🥩</span>
+          <h2>قسم الستيك</h2>
+        </div>
+
+        <div class="section-grid">
+          <div class="dish-visual">
+            <h3>ستيك مشوي بأنواع لحم مختلفة</h3>
+            <div class="dish-circle steak-circle"></div>
+            <div class="price-tag">السعر التقريبي: ٧٠ ر.س</div>
+          </div>
+
+          <div>
+            <div class="ingredients">
+              <h4>أنواع اللحم المناسبة</h4>
+              <div class="ingredients-list">
+                <div class="ingredient-pill">
+                  <span class="icon">🥩</span><span>ريب آي</span>
+                </div>
+                <div class="ingredient-pill">
+                  <span class="icon">🍖</span><span>تي بون</span>
+                </div>
+                <div class="ingredient-pill">
+                  <span class="icon">🍗</span><span>فيليه ميغنون</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="types" style="margin-top: 12px;">
+              <h4>درجات نضج الستيك</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th>درجة النضج</th>
+                    <th>الوصف</th>
+                    <th>السعر (ر.س)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>نادر (Rare)</td>
+                    <td>أحمر من الداخل وطري جدًا</td>
+                    <td>٦٥</td>
+                  </tr>
+                  <tr>
+                    <td>متوسط (Medium)</td>
+                    <td>وردي من الداخل ومتماسك</td>
+                    <td>٧٠</td>
+                  </tr>
+                  <tr>
+                    <td>مستوي تمامًا (Well Done)</td>
+                    <td>بني بالكامل ومقرمش</td>
+                    <td>٧٥</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🌿 ستايل المطاعم والبهارات -->
+    <section class="section">
+      <div class="section-content">
+        <div class="section-title">
+          <span class="emoji">🌿</span>
+          <h2>ستايل المطاعم والبهارات</h2>
+        </div>
+
+        <div class="section-grid">
+          <div class="ingredients">
+            <h4>بهارات ونكهات</h4>
+            <div class="ingredients-list">
+              <div class="ingredient-pill">
+                <span class="icon">🧂</span><span>فلفل أسود</span>
+              </div>
+              <div class="ingredient-pill">
+                <span class="icon">🧂</span><span>ملح البحر</span>
+              </div>
+              <div class="ingredient-pill">
+                <span class="icon">🌿</span><span>ريحان</span>
+              </div>
+              <div class="ingredient-pill">
+                <span class="icon">🍃</span><span>زعتر</span>
+              </div>
+              <div class="ingredient-pill">
+                <span class="icon">🫒</span><span>زيت الزيتون</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="types">
+            <h4>ملاحظات تصميمية للدرس</h4>
+            <ul style="margin: 6px 0 0; padding-right: 18px; font-size: 0.95rem;">
+              <li>استخدام خلفية خضراء داكنة لإبراز الأطباق بشكل أنيق.</li>
+              <li>إضافة لمسات من الأحمر والأبيض لتذكير بألوان العلم الإيطالي 🇮🇹.</li>
+              <li>تنظيم المعلومات في جداول ليسهل على الطالب المقارنة بين الأطباق.</li>
+              <li>إمكانية تحويل هذه الصفحة إلى منيو تفاعلي في مشاريع العرض التقديمي.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      هذا الدرس يجمع بين التصميم الجرافيكي والطعام، ويصلح كنموذج تطبيقي لصفحات الدروس عن المطاعم والمنيو.
+    </div>
+  </div>
+</body>
+</html>
