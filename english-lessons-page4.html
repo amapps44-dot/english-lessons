@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دروس إضافية — الألوان</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Sora:wght@600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-1:#4C1D95;
+    --bg-2:#7C3AED;
+    --bg-3:#DB2777;
+    --chalk-white:#FFF7FB;
+    --marigold:#FFD23F;
+    --paper:#FFFDF9;
+    --ink:#2D2A4A;
+    --muted:#E3D3FA;
+    --card-back:#4C1D95;
+    --font-ar-display:'Tajawal',sans-serif;
+    --font-ar-body:'Tajawal',sans-serif;
+    --font-en-display:'Sora',sans-serif;
+    --font-en-word:'Quicksand',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(255,255,255,.12), transparent 40%),
+      radial-gradient(ellipse at 90% 70%, rgba(255,255,255,.08), transparent 45%),
+      linear-gradient(135deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3) 100%);
+    color:var(--chalk-white);
+    font-family:var(--font-ar-body);
+    line-height:1.7;
+  }
+  .lesson:nth-of-type(1){ --accent:#16A34A; }
+  .lesson:nth-of-type(2){ --accent:#DB2777; }
+  .en{ direction:ltr; unicode-bidi:isolate; display:inline-block; font-family:var(--font-en-display); }
+  .en-word{ direction:ltr; unicode-bidi:isolate; display:block; font-family:var(--font-en-display); }
+
+  a{color:inherit; text-decoration:none;}
+  :focus-visible{ outline:3px solid var(--marigold); outline-offset:3px; }
+
+  /* HERO */
+  .hero{ padding:64px 20px 48px; text-align:center; }
+  .hero-inner{ max-width:680px; margin:0 auto; }
+  .back-link{ display:inline-block; margin-bottom:16px; color:var(--marigold); font-weight:700; font-size:.9rem; border-bottom:2px dashed var(--marigold); padding-bottom:2px; }
+  .eyebrow{ color:var(--marigold); font-weight:700; letter-spacing:.03em; margin:0 0 14px; font-size:.95rem; }
+  .hero h1{ font-family:var(--font-ar-display); font-weight:800; font-size:clamp(1.8rem, 5vw, 2.7rem); margin:0 0 16px; }
+  .hero h1 .en{ color:var(--marigold); font-weight:700; border-bottom:3px dashed var(--marigold); padding-bottom:2px; }
+  .subtitle{ color:var(--muted); font-size:1.05rem; max-width:520px; margin:0 auto 28px; }
+  .cta{ display:inline-block; background:var(--marigold); color:var(--bg-1); font-weight:700; padding:12px 26px; border-radius:30px; font-family:var(--font-ar-display); box-shadow:0 8px 18px rgba(0,0,0,.3); transition:transform .15s ease; }
+  .cta:hover{ transform:translateY(-2px); }
+  .voice-picker{ margin-top:18px; font-size:.9rem; color:var(--muted); }
+  .voice-picker label{ margin-left:6px; }
+  .voice-picker select{
+    background:rgba(255,255,255,.12); color:var(--chalk-white); border:1px solid rgba(255,255,255,.3);
+    border-radius:8px; padding:6px 10px; font-family:var(--font-ar-body); max-width:220px;
+  }
+
+  /* NAV */
+  .lesson-nav{
+    position:sticky; top:0; z-index:20;
+    display:flex; gap:8px; overflow-x:auto;
+    padding:10px 16px; background:rgba(45,15,70,.85); backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(255,255,255,.12);
+    scrollbar-width:thin;
+  }
+  .lesson-nav a{
+    flex:0 0 auto; font-size:.85rem; font-weight:700; padding:8px 14px;
+    border-radius:20px; color:var(--chalk-white); background:rgba(255,255,255,.1);
+    white-space:nowrap; transition:background .2s, color .2s;
+  }
+  .lesson-nav a.active{ background:var(--marigold); color:var(--bg-1); }
+
+  main{ max-width:760px; margin:0 auto; padding:10px 16px 30px; }
+
+  /* LESSON SECTIONS */
+  .lesson{ scroll-margin-top:70px; margin-top:46px; }
+  .lesson-tag{
+    font-family:var(--font-ar-display); font-weight:700; color:var(--accent);
+    display:inline-block; margin:0 0 10px 4px; transform:rotate(-1deg);
+    border-bottom:2px dashed var(--accent); padding-bottom:2px; font-size:.95rem;
+  }
+  .page{
+    position:relative; background:var(--paper); color:var(--ink);
+    border-radius:14px; padding:26px 22px 28px; box-shadow:0 14px 30px rgba(0,0,0,.35);
+  }
+  .lesson:nth-child(odd) .page{ transform:rotate(-.4deg); }
+  .lesson:nth-child(even) .page{ transform:rotate(.4deg); }
+  .page::before{
+    content:''; position:absolute; top:-9px; right:50%; transform:translateX(50%);
+    width:14px; height:14px; border-radius:50%; background:var(--accent);
+    box-shadow:0 2px 5px rgba(0,0,0,.4);
+  }
+  .page h2{ font-family:var(--font-ar-display); font-size:1.35rem; margin:0 0 6px; }
+  .page h2 .en{ color:var(--accent); font-size:1.05rem; }
+  .lesson-note{ color:#7a7690; font-size:.92rem; margin:0 0 18px; }
+
+  /* CARD GRID */
+  .cards{ display:grid; gap:10px; grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); }
+  .cards.grid-phrases{ grid-template-columns:1fr; gap:10px; }
+  .grid-phrases .card{ height:auto; }
+  .grid-phrases .card-inner{ height:auto; }
+  .grid-phrases .card-face{ position:relative; inset:auto; }
+  .grid-phrases .card-face.back{ display:none; }
+  .grid-phrases .card.flipped .card-inner{ transform:none; }
+
+  .card{ background:none; border:none; padding:0; cursor:pointer; perspective:800px; height:96px; }
+
+  .card-inner{
+    position:relative; width:100%; height:100%; transform-style:preserve-3d;
+    transition:transform .5s cubic-bezier(.4,.2,.2,1);
+  }
+  .card.flipped .card-inner{ transform:rotateY(180deg); }
+  .card-face{
+    position:absolute; inset:0; backface-visibility:hidden; border-radius:10px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:8px; text-align:center; gap:4px;
+  }
+  .card-face.front{ background:#fff; border:1.5px dashed var(--accent); color:var(--ink); }
+  .card-face.back{ background:var(--card-back); color:var(--chalk-white); transform:rotateY(180deg); font-family:var(--font-ar-display); font-weight:700; font-size:1rem; }
+
+  .card .en-word{ font-weight:700; font-size:1rem; color:var(--ink); }
+  .grid-phrases .card .en-word{ display:block; white-space:normal; font-size:1rem; line-height:1.4; font-weight:800; }
+  .card .meaning{ font-size:.85rem; color:var(--accent); font-weight:700; font-family:var(--font-ar-display); margin-top:2px; }
+  .card .swatch{ width:40px; aspect-ratio:1/1; flex-shrink:0; border-radius:50%; border:3px solid rgba(0,0,0,.3); margin-bottom:8px; box-shadow:0 3px 6px rgba(0,0,0,.2); display:block; }
+
+  /* OUTRO */
+  .outro{ max-width:680px; margin:50px auto 70px; padding:0 20px; text-align:center; color:var(--muted); font-size:1rem; }
+  .outro .en{ color:var(--marigold); }
+  .outro a{ color:var(--marigold); font-weight:700; border-bottom:2px dashed var(--marigold); }
+
+  @media (min-width:900px){
+    main{ max-width:880px; }
+    .hero-inner{ max-width:760px; }
+    .lesson-nav{ justify-content:center; overflow-x:visible; flex-wrap:wrap; }
+    .cards{ grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    .card-inner{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <a class="back-link" href="english-lessons-page3.html">→ رجوع لدروس الأكل والمطعم</a>
+    <p class="eyebrow">🎨 دروس إضافية · الألوان</p>
+    <h1>ألوان <span class="en" dir="ltr">& Sentences</span></h1>
+    <p class="subtitle">ألوان جديدة، وجمل حقيقية تستخدم اسم اللون. اضغط على أي بطاقة لتسمع نطقها وتشاهد المعنى.</p>
+    <a href="#lesson-13" class="cta">🎨 ابدأ ↓</a>
+    <div class="voice-picker">
+      <label for="voiceSelect">🔊 صوت النطق:</label>
+      <select id="voiceSelect"></select>
+    </div>
+  </div>
+</header>
+
+<nav class="lesson-nav" id="lessonNav">
+  <a href="#lesson-13" data-target="lesson-13">🎨 ١٧ · ألوان إضافية</a>
+  <a href="#lesson-14" data-target="lesson-14">✏️ ١٨ · جمل بالألوان</a>
+</nav>
+
+<main>
+
+  <section class="lesson" id="lesson-13">
+    <div class="lesson-tag">الدرس ١٧</div>
+    <div class="page">
+      <h2>ألوان إضافية <span class="en" dir="ltr">— More Colors</span></h2>
+      <p class="lesson-note">لون البطاقة يطابق اسمها.</p>
+      <div class="cards" id="cards-lesson-13"></div>
+    </div>
+  </section>
+
+  <section class="lesson" id="lesson-14">
+    <div class="lesson-tag">الدرس ١٨</div>
+    <div class="page">
+      <h2>جمل فيها الألوان <span class="en" dir="ltr">— Color Sentences</span></h2>
+      <p class="lesson-note">شوف كيف تستخدم اسم اللون جوا جملة حقيقية.</p>
+      <div class="cards grid-phrases" id="cards-lesson-14"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="outro">
+  <p>أحسنت! تعلّمت ألوان جديدة وجمل تستخدمها <span class="en" dir="ltr">— great job.</span> رجّع لأي درس قديم من <a href="index.html">هنا</a> وقت ما تحب.</p>
+</footer>
+
+<script>
+  const data = {
+    "lesson-13": { cls:"swatch", items:[
+      ["Pink","وردي","#EC4899"],["Brown","بني","#92400E"],
+      ["Gray","رمادي","#6B7280"],["Gold","ذهبي","#D4A017"],
+      ["Silver","فضي","#9CA3AF"],["Beige","بيج","#D8CAB8"]
+    ]},
+    "lesson-14": { cls:"phrase", items:[
+      ["I like the red car.","أحب السيارة الحمراء."],
+      ["She has blue eyes.","عندها عيون زرقاء."],
+      ["The sky is blue.","السماء زرقاء."],
+      ["My favorite color is orange.","لوني المفضل برتقالي."],
+      ["He is wearing a black shirt.","هو يلبس قميص أسود."],
+      ["I want the pink one.","أريد اللون الوردي."],
+      ["I have a silver car.","عندي سيارة فضية."]
+    ]}
+  };
+
+  Object.entries(data).forEach(([id, info]) => {
+    const container = document.getElementById('cards-' + id);
+    container.innerHTML = info.items.map(item => {
+      const [en, back, extra] = item;
+      const swatch = info.cls === 'swatch' ? `<span class="swatch" style="background:${extra}"></span>` : '';
+      const meaning = info.cls === 'phrase' ? `<span class="meaning">${back}</span>` : '';
+      return `
+        <button class="card" type="button" aria-pressed="false" data-speak="${en}">
+          <span class="card-inner">
+            <span class="card-face front">
+              ${swatch}
+              <span class="en-word" dir="ltr">${en}</span>
+              ${meaning}
+            </span>
+            <span class="card-face back">${back}</span>
+          </span>
+        </button>`;
+    }).join('');
+  });
+
+  document.addEventListener('click', e => {
+    const card = e.target.closest('.card');
+    if(card){
+      card.classList.toggle('flipped');
+      card.setAttribute('aria-pressed', card.classList.contains('flipped'));
+      const speakText = card.dataset.speak || card.querySelector('.en-word')?.textContent;
+      if(speakText) speak(speakText);
+    }
+  });
+
+  let bestVoice = null;
+  let englishVoices = [];
+  const voiceSelect = document.getElementById('voiceSelect');
+  function loadVoices(){
+    const voices = window.speechSynthesis.getVoices();
+    if(!voices.length) return;
+    englishVoices = voices.filter(v => /^en/i.test(v.lang));
+    const tessa = englishVoices.find(v => /Tessa/i.test(v.name));
+    const neural = englishVoices.find(v => /Google|Natural|Online|Microsoft|Neural/i.test(v.name));
+    const usVoice = englishVoices.find(v => /en-US/i.test(v.lang));
+    bestVoice = tessa || neural || usVoice || englishVoices[0] || voices[0];
+
+    if(voiceSelect && !voiceSelect.dataset.filled){
+      const goodPattern = /Google|Natural|Online|Microsoft|Neural|Samantha|Aaron|Ava|Karen|Moira|Tessa|Fiona|Alex|Allison|Nicky/i;
+      let list = englishVoices.filter(v => goodPattern.test(v.name));
+      if(!list.length) list = englishVoices.length ? englishVoices : voices;
+      voiceSelect.innerHTML = list.map((v,i) =>
+        `<option value="${i}" ${v === bestVoice ? 'selected' : ''}>${v.name} (${v.lang})</option>`
+      ).join('');
+      voiceSelect.dataset.filled = '1';
+      voiceSelect._voices = list;
+    }
+  }
+  if('speechSynthesis' in window){
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }
+  if(voiceSelect){
+    voiceSelect.addEventListener('change', () => {
+      const list = voiceSelect._voices || englishVoices;
+      bestVoice = list[voiceSelect.value] || bestVoice;
+      speak('Hello');
+    });
+  }
+
+  function speak(text){
+    if(!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text.replace(/\.\.\.$/,''));
+    if(bestVoice){
+      utter.voice = bestVoice;
+      utter.lang = bestVoice.lang;
+    } else {
+      utter.lang = 'en-US';
+    }
+    utter.rate = 0.72;
+    window.speechSynthesis.speak(utter);
+  }
+
+  const navLinks = [...document.querySelectorAll('#lessonNav a')];
+  const sections = [...document.querySelectorAll('.lesson')];
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        navLinks.forEach(l => l.classList.toggle('active', l.dataset.target === entry.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
